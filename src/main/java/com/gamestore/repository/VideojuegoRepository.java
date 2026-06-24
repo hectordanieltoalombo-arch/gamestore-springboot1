@@ -13,7 +13,7 @@ public interface VideojuegoRepository extends JpaRepository<Videojuego, Long> {
         SELECT v FROM Videojuego v
         WHERE (:generoId IS NULL OR v.genero.id = :generoId)
         AND (:plataformaId IS NULL OR v.plataforma.id = :plataformaId)
-        AND (:busqueda IS NULL OR LOWER(v.titulo) LIKE LOWER(CONCAT('%', CAST(:busqueda AS string), '%')))
+        AND (:busqueda IS NULL OR LOWER(v.titulo) LIKE LOWER(CONCAT('%', :busqueda, '%')))
         """)
     Page<Videojuego> buscarConFiltros(
         @Param("generoId") Long generoId,
